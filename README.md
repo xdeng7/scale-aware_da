@@ -5,12 +5,12 @@ This repository provides the ResNet-101-based segmentation model trained on ISPR
 
 
 
-** Train the model
+## Train the model
 ```bash
 $ python train_scaleDA_isprs.py --folder DATA-ROOT
 ```
 
-** Test the model
+## Test the model
 ```bash
 $ python test_isprs.py --resume CHECKPOINT 
 ```
