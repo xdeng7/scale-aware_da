@@ -12,10 +12,16 @@ $ python train_scaleDA_isprs.py --folder DATA-ROOT
 
 ** Test the model
 ```bash
-$ python test_isprs.py --resume CHECKPOINT ```
-
+$ python test_isprs.py --resume CHECKPOINT 
 ```
-Scale Aware Adaptation for Land-Cover Classificationin Remote Sensing Imagery
-Xueqing Deng, Yi Zhu, Yuxin Tian, Shawn Newsam
-In WACV 2021
+
+Please cite our paper:
+```
+@inproceedings{deng2021scale,
+  title={Scale Aware Adaptation for Land-Cover Classification in Remote Sensing Imagery},
+  author={Deng, Xueqing and Zhu, Yi and Tian, Yuxin and Newsam, Shawn},
+  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+  pages={2160--2169},
+  year={2021}
+}
 ```
