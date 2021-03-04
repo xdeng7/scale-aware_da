@@ -26,7 +26,7 @@ class DeepLabCA(nn.Module):
         self.decoder = build_decoder(num_classes, backbone, BatchNorm)
         self.avg_pool= nn.AdaptiveAvgPool2d(32)
         # self.se=RCAB(2048+1024+512+256+256,1,16)
-        self.se=CAM_Module()
+        self.ca=CAM_Module()
         in_channels=2048+1024+512+256+256
         inter_channels=in_channels//4
         # self.conv5c = nn.Sequential(nn.Conv2d(in_channels, inter_channels, 3, padding=1, bias=False),
@@ -51,34 +51,12 @@ class DeepLabCA(nn.Module):
         x3=self.avg_pool(l3)
         x4=self.avg_pool(l4)
         x = self.aspp(x)
-        # import pdb
-        # pdb.set_trace()
+
         x=torch.cat((x4,x3,x2,x1,x),dim=1)
         cout1=x
 
-        # x=self.conv5c(x)
-        
-        # import pdb
-        # pdb.set_trace()
-        # feamap=x
-        x,_=self.se(x)
-        # cout
+        x,_=self.ca(x)
 
-        # fea=x
-        # x=self.conv5(x)
-        # cout2=self.conv6(x)
-        # cout=x
-        # cout1=F.interpolate(cout1, size=input.size()[2:], mode='bilinear', align_corners=True)
-        # cout2=F.interpolate(cout2, size=input.size()[2:], mode='bilinear', align_corners=True)
-
-        
-        
-        # import pdb
-        # pdb.set_trace()
-        # attn_map=x
-        # attn=F.interpolate(x, size=input.size()[2:], mode='bilinear', align_corners=True)
-        # import pdb
-        # pdb.set_trace()
 
         x = self.decoder(x, low_level_feat)
         # feature=x
